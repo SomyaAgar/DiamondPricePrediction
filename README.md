@@ -28,7 +28,7 @@ This project is a **regression-based machine learning model** that predicts diam
 
 ## Dataset
 
-The dataset used is obtained from Kaggle (https://www.kaggle.com/datasets/amitabhajoy/bengaluru-house-price-data), **Bengaluru House Data**, which contains 10 independent variables (icluding id) :
+The dataset used is obtained from Kaggle (https://www.kaggle.com/competitions/playground-series-s3e8/data), **Tabular Gemstone Price Dataset**, which contains 10 independent variables (icluding id) :
 
 - id : unique identifier of each diamond
 - carat : Carat (ct.) refers to the unique unit of weight measurement used exclusively to weigh gemstones and diamonds.
@@ -53,5 +53,6 @@ The dataset used is obtained from Kaggle (https://www.kaggle.com/datasets/amitab
 8. Create frontend
 9. Backend integration using Flask 
 ---
+![image](https://github.com/user-attachments/assets/711cd887-04c0-4859-92ed-789c18ff8d77)
 
 
