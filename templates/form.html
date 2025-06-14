@@ -1,113 +1,107 @@
 <html>
 
 <head>
-  <title>Diamond Price Prediction</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Diamond Price Predictor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 </head>
 
-<body>
-  <div class="container">
-    <h2 style="text-align:center;">Predict The Diamond Price Now !!</h2>
+<body class="bg-dark">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="card" style="width: 80%;">
+        <div class="card-header text-center">
+          <h1>Predict the Diamond Price now!</h1>
+        </div>
+        <div class="card-body">
+          <form action="{{url_for('predict_datapoint')}}" method="POST">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="carat"><b>Carat:</b></label>
+                <input type="text" class="form-control" id="carat" name="carat" placeholder="Enter carat value (float)">
+              </div>
 
-  <form class="form-horizontal" action="{{url_for('predict_datapoint')}}" method="POST">
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="carat">Carat:</label>
-      <div class="col-sm-10">
-        <input type="text" id="carat" class="form-control" name="carat" placeholder="Enter carat value (float)">
+              <div class="col-md-6">
+                <label for="depth"><b>Depth:</b></label>
+                <input type="text" class="form-control" id="depth" name="depth" placeholder="Enter depth value (float)">
+              </div>
+
+              <div class="col-md-6">
+                <label for="table"><b>Table:</b></label>
+                <input type="text" class="form-control" id="table" name="table" placeholder="Enter table value (float)">
+              </div>
+
+              <div class="col-md-6">
+                <label for="x"><b>x:</b></label>
+                <input type="text" class="form-control" id="x" name="x" placeholder="Enter x value (float)">
+              </div>
+
+              <div class="col-md-6">
+                <label for="y"><b>y:</b></label>
+                <input type="text" class="form-control" id="y" name="y" placeholder="Enter y value (float)">
+              </div>
+
+              <div class="col-md-6">
+                <label for="z"><b>z:</b></label>
+                <input type="text" class="form-control" id="z" name="z" placeholder="Enter z value (float)">
+              </div>
+
+              <div class="col-md-6">
+                <label for="cut"><b>Cut:</b></label>
+                <select class="form-control" id="cut" name="cut">
+                  <option value="Fair">Fair</option>
+                  <option value="Good">Good</option>
+                  <option value="Very Good">Very Good</option>
+                  <option value="Premium">Premium</option>
+                  <option value="Ideal">Ideal</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="color"><b>Color:</b></label>
+                <select class="form-control" id="color" name="color">
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                  <option value="F">F</option>
+                  <option value="G">G</option>
+                  <option value="H">H</option>
+                  <option value="I">I</option>
+                  <option value="J">J</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="clarity"><b>Clarity:</b></label>
+                <select class="form-control" id="clarity" name="clarity">
+                  <option value="I1">I1</option>
+                  <option value="SI2">SI2</option>
+                  <option value="SI1">SI1</option>
+                  <option value="VS2">VS2</option>
+                  <option value="VS1">VS1</option>
+                  <option value="VVS2">VVS2</option>
+                  <option value="VVS1">VVS1</option>
+                  <option value="IF">IF</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label>&nbsp;</label>
+                <input class="btn btn-primary w-100 mt-2" type="submit" value="Submit">
+              </div>
+            </div>
+          </form>
+          <div class="mt-3 text-center text-success">
+            <b>
+              <label for="result">Predicted Amount: Rs</label>
+            {{final_result}}
+            </b>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="depth">Depth:</label>
-      <div class="col-sm-10">
-        <input type="text" id="depth" class="form-control" name="depth" placeholder="Enter depth value (float)">
-      </div>  
-    </div>
-
-    <div class="form-group">
-      <label  class="control-label col-sm-2" for="table">Table:</label>
-      <div class="col-sm-10">
-        <input type="text" id="table" class="form-control" name="table" placeholder="Enter table value (float)">
-      </div> 
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="x">X:</label>
-      <div class="col-sm-10">
-        <input type="text" id="x" class="form-control" name="x" placeholder="Enter x value (float)">
-      </div>
-    </div>
-
-    <div  class="form-group">
-      <label class="control-label col-sm-2" for="y">y:</label>
-      <div class="col-sm-10">
-        <input type="text" id="y" class="form-control" name="y" placeholder="Enter y value (float)">
-      </div>   
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="z">z:</label>
-      <div class="col-sm-10">
-        <input type="text" id="z" class="form-control" name="z" placeholder="Enter z value (float)">
-      </div>     
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="cut">Cut:</label>
-      <div class="col-sm-10">
-        <select id="cut" class="form-control" name="cut">
-          <option value="Fair">Fair</option>
-          <option value="Good">Good</option>
-          <option value="Very Good">Very Good</option>
-          <option value="Premium">Premium</option>
-          <option value="Ideal">Ideal</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="color">Color:</label>
-      <div class="col-sm-10">
-        <select id="color" class="form-control" name="color">
-          <option value="D">D</option>
-          <option value="E">E</option>
-          <option value="F">F</option>
-          <option value="G">G</option>
-          <option value="H">H</option>
-          <option value="I">I</option>
-          <option value="J">J</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="clarity">Clarity:</label>
-      <div class="col-sm-10">
-        <select id="clarity" class="form-control" name="clarity">
-          <option value="I1">I1</option>
-          <option value="SI2">SI2</option>
-          <option value="SI1">SI1</option>
-          <option value="VS2">VS2</option>
-          <option value="VS1">VS1</option>
-          <option value="VVS2">VVS2</option>
-          <option value="VVS1">VVS1</option>
-          <option value="IF">IF</option>
-        </select>
-      </div> 
-    </div>
-    <div class="form-group" style="clear:both;">
-      <div class="col-sm-offset-2 col-sm-10">
-        <input type="submit" value="Submit">
-      </div>
-    </div>
-    
-  </form>
-  <h2 style="text-align:center;">Price of the diamonds is : {{final_result}}</h2>
-  
+  </div>
 </body>
 
 </html>
